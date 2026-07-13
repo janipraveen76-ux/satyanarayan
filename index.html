@@ -41,17 +41,26 @@
         }
 
         /* ======================================================== */
-        /* 🚫 REMOVE THE UGLY GOOGLE TRANSLATE BANNER FRAME ENTIRELY */
+        /* 🚫 REMOVE GOOGLE TRANSLATE BANNER BUT KEEP THE DROPDOWN  */
         /* ======================================================== */
-        .goog-te-banner-frame {
+        /* Hide the top banner frames specifically */
+        .goog-te-banner-frame,
+        .VIpgJd-ZVi9od-ORHb-OEVmcd,
+        .VIpgJd-ZVi9od-l4eHX-hSRGPd,
+        .VIpgJd-yAWNEb-L7lbkb,
+        .VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc {
             display: none !important;
             visibility: hidden !important;
+            height: 0px !important;
         }
+        
+        [...](asc_slot://start-slot-5)/* Force the website body back to the top of the screen */
         body {
             top: 0px !important;
             position: static !important;
         }
         /* ======================================================== */
+
 
 
     </style>
