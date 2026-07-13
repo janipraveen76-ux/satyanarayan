@@ -609,7 +609,7 @@
             if (toastLoading) toastLoading.classList.remove('hidden');
             if (toastSuccess) toastSuccess.classList.add('hidden');
 
-            const webAppUrl = "https://script.google.com/macros/s/AKfycbxrfDEa8mWiwowpro8UMEf0dUWdh1gLUi4OZivyg6L0MziItaTgKO8FFXlJYWN8rcHmMA/exec"; // REPLACE THIS with your deployment URL
+            const webAppUrl = "YOUR_GOOGLE_WEB_APP_URL"; // Make sure to put your actual /exec URL here!
 
             if (webAppUrl === "YOUR_GOOGLE_WEB_APP_URL") {
                 alert("Please add your Google Web App URL inside index.html script first!");
@@ -621,11 +621,16 @@
             const formData = new FormData(form);
             const queryParams = new URLSearchParams(formData).toString();
 
-            // Submit securely using cross-domain fetch POST
-            fetch(`${webAppUrl}?${queryParams}`, {
-                method: "POST"
+            // Submit securely using cross-domain fetch POST with no-cors to bypass browser blocks
+            fetch(webAppUrl, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: queryParams
             })
-            .then(response => {
+            .then(() => {
                 if (toastLoading) toastLoading.classList.add('hidden');
                 if (toastSuccess) toastSuccess.classList.remove('hidden');
                 
@@ -648,6 +653,7 @@
                 console.error("DNS/CORS Error: ", error);
             });
         }
+
     </script>
 
     
