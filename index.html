@@ -10,52 +10,126 @@
     <style>
         h1, h2, h3, .brand-font { font-family: 'Cinzel', serif; }
         body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom print-only style to cleanly format the Checklist on paper */
+        @media print {
+            body * { visibility: hidden; }
+            #samagri, #samagri * { visibility: visible; }
+            #samagri { position: absolute; left: 0; top: 0; width: 100%; border: none; box-shadow: none; padding: 0; margin: 0; }
+            .no-print { display: none !important; }
+        }
     </style>
 </head>
 <body class="bg-amber-50 text-stone-800">
 
     <!-- Header / Navbar -->
-    <header class="bg-orange-600 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-width-7xl mx-auto px-4 py-4 flex justify-between items-center max-w-6xl">
+    <header class="bg-orange-600 text-white shadow-lg sticky top-0 z-50 no-print">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div class="flex items-center space-x-2">
                 <span class="text-2xl">🕉️</span>
                 <span class="text-xl font-bold tracking-widest brand-font">Satyanarayan.com</span>
             </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-semibold uppercase">
-                <a href="#about" class="hover:text-amber-200 transition">Significance</a>
-                <a href="#samagri" class="hover:text-amber-200 transition">Puja Checklist</a>
-                <a href="#vidhi" class="hover:text-amber-200 transition">Vidhi Steps</a>
-                <a href="#katha" class="hover:text-amber-200 transition">Read Katha</a>
-                <a href="#prasad" class="hover:text-amber-200 transition">Prasad Recipe</a>
-            </nav>
+            
+            <!-- Google Translate Widget Integrated Nicely in Header -->
+            <div class="flex items-center space-x-4">
+                <div id="google_translate_element" class="bg-white text-stone-800 text-xs px-2 py-1 rounded shadow-inner"></div>
+                <nav class="hidden lg:flex space-x-6 text-sm font-semibold uppercase">
+                    <a href="#about" class="hover:text-amber-200 transition">Significance</a>
+                    <a href="#dates" class="hover:text-amber-200 transition">2026-27 Dates</a>
+                    <a href="#samagri" class="hover:text-amber-200 transition">Checklist</a>
+                    <a href="#vidhi" class="hover:text-amber-200 transition">Vidhi Steps</a>
+                    <a href="#katha" class="hover:text-amber-200 transition">Read Katha</a>
+                    <a href="#directory" class="hover:text-amber-200 transition">Pandits</a>
+                </nav>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative bg-cover bg-center h-[500px] flex items-center text-center text-white" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1609137144814-7e86895b6c31?auto=format&fit=crop&q=80&w=1200');">
+    <section class="relative bg-cover bg-center h-[500px] flex items-center text-center text-white no-print" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1609137144814-7e86895b6c31?auto=format&fit=crop&q=80&w=1200');">
         <div class="max-w-4xl mx-auto px-4">
             <h1 class="text-4xl md:text-6xl font-bold mb-4 text-amber-300 drop-shadow-md">Perform Your Satyanarayan Puja Professionally</h1>
-            <p class="text-lg md:text-xl mb-8 text-stone-200">Your ultimate digital companion for authentic rituals, checklists, recipes, and sacred stories.</p>
-            <a href="#samagri" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold px-8 py-3 rounded-full shadow-lg transition transform hover:scale-105 inline-block">Interactive Samagri List</a>
+            <p class="text-lg md:text-xl mb-8 text-stone-200 font-light">Your ultimate digital companion for authentic rituals, checklists, recipes, and sacred stories.</p>
+            <div class="space-x-4">
+                <a href="#samagri" class="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold px-8 py-3 rounded-full shadow-lg transition transform hover:scale-105 inline-block">Interactive Checklist</a>
+                <a href="#dates" class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 py-3 rounded-full shadow-lg transition transform hover:scale-105 inline-block border border-orange-500">Puja Calendar</a>
+            </div>
         </div>
     </section>
 
     <main class="max-w-6xl mx-auto px-4 py-12 space-y-16">
 
         <!-- Section: Significance -->
-        <section id="about" class="bg-white rounded-2xl p-8 shadow-md border-t-4 border-orange-500">
+        <section id="about" class="bg-white rounded-2xl p-8 shadow-md border-t-4 border-orange-500 no-print">
             <h2 class="text-3xl font-bold text-orange-600 mb-6 text-center">The Significance of Satyanarayan Vrat</h2>
             <p class="text-stone-600 leading-relaxed max-w-3xl mx-auto text-center mb-6">
                 The **Satyanarayan Puja** is a worship ritual dedicated to Lord Vishnu, the embodiment of Eternal Truth. Performing this puja brings peace, prosperity, health, and spiritual abundance. It is traditionally performed on **Purnima (Full Moon)** days, Ekadashi, or during major life milestones like weddings, housewarmings, or new business ventures.
             </p>
         </section>
 
-        <!-- Section: Interactive Samagri Checklist -->
+        <!-- Feature 1: 2026-2027 Auspicious Puja Dates Calendar -->
+        <section id="dates" class="bg-white rounded-2xl p-8 shadow-md border-t-4 border-orange-500 no-print">
+            <div class="text-center mb-8">
+                <span class="text-3xl">📅</span>
+                <h2 class="text-3xl font-bold text-orange-600 mt-2">Auspicious Puja Dates Calendar</h2>
+                <p class="text-stone-500 mt-1">Plan your upcoming Puja on scripture-verified Purnima and Tithi dates.</p>
+            </div>
+
+            <!-- Year Tabs -->
+            <div class="flex justify-center space-x-4 mb-6">
+                <button onclick="switchYear(2026)" id="btn-2026" class="px-6 py-2 rounded-full font-bold transition shadow bg-orange-600 text-white">2026 Dates</button>
+                <button onclick="switchYear(2027)" id="btn-2027" class="px-6 py-2 rounded-full font-bold transition shadow bg-amber-100 text-amber-800 hover:bg-amber-200">2027 Dates</button>
+            </div>
+
+            <!-- Calendar Tables -->
+            <div class="overflow-x-auto">
+                <!-- 2026 Table -->
+                <table id="table-2026" class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-amber-100 text-amber-900 font-semibold border-b border-amber-200">
+                            <th class="p-3">Month</th>
+                            <th class="p-3">Date</th>
+                            <th class="p-3">Auspicious Occasion</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-stone-600 divide-y divide-stone-100 text-sm">
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">July</td><td class="p-3">July 29, 2026 (Wednesday)</td><td class="p-3 text-orange-600 font-semibold">Guru Purnima / Vyasa Puja</td></tr>
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">August</td><td class="p-3">August 28, 2026 (Friday)</td><td class="p-3">Shravana Purnima / Raksha Bandhan</td></tr>
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">September</td><td class="p-3">September 26, 2026 (Saturday)</td><td class="p-3">Bhadrapada Purnima / Pitru Paksha Begins</td></tr>
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">October</td><td class="p-3">October 26, 2026 (Monday)</td><td class="p-3">Ashwina Purnima / Sharad Purnima</td></tr>
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">November</td><td class="p-3">November 24, 2026 (Tuesday)</td><td class="p-3 text-orange-600 font-semibold">Kartika Purnima (Highly Auspicious)</td></tr>
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">December</td><td class="p-3">December 23, 2026 (Wednesday)</td><td class="p-3">Margashirsha Purnima</td></tr>
+                    </tbody>
+                </table>
+
+                <!-- 2027 Table (Hidden by default) -->
+                <table id="table-2027" class="w-full text-left border-collapse hidden">
+                    <thead>
+                        <tr class="bg-amber-100 text-amber-900 font-semibold border-b border-amber-200">
+                            <th class="p-3">Month</th>
+                            <th class="p-3">Date</th>
+                            <th class="p-3">Auspicious Occasion</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-stone-600 divide-y divide-stone-100 text-sm">
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">January</td><td class="p-3">January 22, 2027 (Friday)</td><td class="p-3">Pausha Purnima</td></tr>
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">February</td><td class="p-3">February 21, 2027 (Sunday)</td><td class="p-3">Magha Purnima</td></tr>
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">March</td><td class="p-3">March 22, 2027 (Monday)</td><td class="p-3">Phalguna Purnima / Holika Dahan</td></tr>
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">April</td><td class="p-3">April 21, 2027 (Wednesday)</td><td class="p-3">Chaitra Purnima / Hanuman Jayanti</td></tr>
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">May</td><td class="p-3">May 20, 2027 (Thursday)</td><td class="p-3">Vaishakha Purnima / Buddha Purnima</td></tr>
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">June</td><td class="p-3">June 19, 2027 (Saturday)</td><td class="p-3">Jyeshtha Purnima / Vat Purnima</td></tr>
+                        <tr class="hover:bg-amber-50/50"><td class="p-3 font-semibold">July</td><td class="p-3">July 18, 2027 (Sunday)</td><td class="p-3 text-orange-600 font-semibold">Guru Purnima / Vyasa Puja</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section: Interactive Samagri Checklist + Smart Print Feature -->
         <section id="samagri" class="bg-white rounded-2xl p-8 shadow-md border-t-4 border-orange-500">
             <div class="text-center mb-8">
-                <span class="text-3xl">📋</span>
+                <span class="text-3xl no-print">📋</span>
                 <h2 class="text-3xl font-bold text-orange-600 mt-2">Interactive Puja Samagri Checklist</h2>
-                <p class="text-stone-500 mt-1">Cross off the items as you prepare. Support this site by using our links to buy premium puja kits!</p>
+                <p class="text-stone-500 mt-1 no-print">Cross off items as you prepare. Keep this site open on your phone or print a physical copy!</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -63,162 +137,66 @@
                 <div>
                     <h3 class="text-lg font-bold text-amber-700 border-b pb-2 mb-4">Core Essentials</h3>
                     <div class="space-y-3">
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Lord Satyanarayan Murti / Picture</span></label>
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Wooden Platform (Pehda/Chowki)</span></label>
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Red or Yellow Altar Cloth</span></label>
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Copper Kalash (Pot)</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Lord Satyanarayan Idol / Picture</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Wooden Platform (Pehda/Chowki)</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Red or Yellow Silk Cloth</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Copper Kalash Pot</span></label>
                     </div>
                 </div>
                 <!-- Group 2 -->
                 <div>
                     <h3 class="text-lg font-bold text-amber-700 border-b pb-2 mb-4">Ritual Elements</h3>
                     <div class="space-y-3">
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Mango Leaves (5 or 11 pcs)</span></label>
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Fresh Tulsi Leaves (Crucial!)</span></label>
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Coconut with Husk</span></label>
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Panchamrit ingredients (Milk, Honey, Ghee, Curd, Sugar)</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Mango Leaves (5 or 11 pcs)</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Fresh Tulsi Leaves (Crucial!)</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Coconut with Husk</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Panchamrit (Milk, Honey, Ghee, Curd, Sugar)</span></label>
                     </div>
                 </div>
                 <!-- Group 3 -->
                 <div>
                     <h3 class="text-lg font-bold text-amber-700 border-b pb-2 mb-4">Offering & Powders</h3>
                     <div class="space-y-3">
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Kumkum & Turmeric Powder</span></label>
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Sandalwood Paste (Chandan)</span></label>
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Incense Sticks (Agarbatti)</span></label>
-                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span>Mauli / Kalava Thread</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Kumkum & Turmeric Powder</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Sandalwood Paste (Chandan)</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Incense Sticks (Agarbatti)</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer"><input type="checkbox" class="w-5 h-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"> <span class="text-sm">Mauli / Sacred Kalava Thread</span></label>
                     </div>
                 </div>
             </div>
-            <div class="mt-8 text-center">
-                <a href="https://amazon.com" target="_blank" class="inline-block bg-orange-100 hover:bg-orange-200 text-orange-700 border border-orange-300 font-semibold px-6 py-2 rounded-lg transition text-sm">
-                    🛒 Shop All Missing Samagri on Amazon
+            
+            <!-- Smart Print & Shop Utility Buttons -->
+            <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4 no-print">
+                <button onclick="window.print()" class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-6 py-2.5 rounded-lg transition text-sm flex items-center space-x-2">
+                    <span>🖨️</span> <span>Print Checklist</span>
+                </button>
+                <a href="https://amazon.com" target="_blank" class="bg-orange-100 hover:bg-orange-200 text-orange-700 border border-orange-300 font-semibold px-6 py-2.5 rounded-lg transition text-sm flex items-center space-x-2">
+                    <span>🛒</span> <span>Buy Puja Kits on Amazon</span>
                 </a>
             </div>
         </section>
 
-        <!-- Section: Interactive Katha Reader -->
-        <section id="katha" class="bg-white rounded-2xl p-8 shadow-md border-t-4 border-orange-500">
-            <div class="text-center mb-8">
-                <span class="text-3xl">📖</span>
-                <h2 class="text-3xl font-bold text-orange-600 mt-2">The Satyanarayan Vrat Katha</h2>
-                <p class="text-stone-500 mt-1">Read the 5 chapters during your puja or share them with devotees.</p>
-            </div>
-
-            <!-- Chapter Navigation Tabs -->
-            <div class="flex flex-wrap justify-center gap-2 mb-8">
-                <button onclick="switchChapter(1)" id="tab-1" class="chapter-tab bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg transition shadow-sm">Chapter 1</button>
-                <button onclick="switchChapter(2)" id="tab-2" class="chapter-tab bg-amber-100 text-amber-800 hover:bg-amber-200 font-semibold px-4 py-2 rounded-lg transition">Chapter 2</button>
-                <button onclick="switchChapter(3)" id="tab-3" class="chapter-tab bg-amber-100 text-amber-800 hover:bg-amber-200 font-semibold px-4 py-2 rounded-lg transition">Chapter 3</button>
-                <button onclick="switchChapter(4)" id="tab-4" class="chapter-tab bg-amber-100 text-amber-800 hover:bg-amber-200 font-semibold px-4 py-2 rounded-lg transition">Chapter 4</button>
-                <button onclick="switchChapter(5)" id="tab-5" class="chapter-tab bg-amber-100 text-amber-800 hover:bg-amber-200 font-semibold px-4 py-2 rounded-lg transition">Chapter 5</button>
-            </div>
-
-            <!-- Chapter Content Box -->
-            <div class="bg-stone-50 p-6 md:p-8 rounded-xl border border-stone-200 min-h-[300px]">
-                <div id="chapter-content" class="prose max-w-none text-stone-700 leading-relaxed">
-                    <h3 class="text-xl font-bold text-orange-600 mb-4">Chapter 1: The Revelation</h3>
-                    <p class="mb-4">Suta Maha Muni addresses the assembled sages in Naimisharanya forest. He narrates how Sage Narada, while traveling through the three worlds, felt deep compassion for suffering humanity on Earth. Narada ascended to Vaikuntha and approached Lord Narayana Himself.</p>
-                    <p class="mb-4">Narada asked the Lord for a simple way for mankind to be relieved of their worldly miseries. Lord Vishnu revealed the **Satyanarayan Vrat**, declaring that anyone who performs this puja with sincere faith, invites friends and family, listens to the stories (Katha), and distributes Prasad will be liberated from all suffering and attain peace on Earth and salvation hereafter.</p>
+        <!-- Section: Puja Ritual Vidhi (Step-by-Step) -->
+        <section id="vidhi" class="bg-white rounded-2xl p-8 shadow-md border-t-4 border-orange-500 no-print">
+            <h2 class="text-3xl font-bold text-orange-600 mb-6 text-center">Step-by-Step Puja Vidhi (Rituals)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Step 1 -->
+                <div class="bg-amber-50/50 p-5 rounded-xl border border-amber-100 text-center">
+                    <span class="text-xs bg-orange-600 text-white font-bold px-2.5 py-1 rounded-full">01</span>
+                    <h3 class="text-lg font-bold text-stone-800 mt-3 mb-2">Shuddhikaran</h3>
+                    <p class="text-xs text-stone-500">Sprinkle Ganga water on yourself, the puja items, and the altar to purify the entire space.</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Section: Holy Prasad Recipe -->
-        <section id="prasad" class="bg-white rounded-2xl p-8 shadow-md border-t-4 border-orange-500">
-            <h2 class="text-3xl font-bold text-orange-600 mb-6 text-center">Authentic Satyanarayan Sheera Recipe (Prasad)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold text-amber-700 mb-4">Ingredients (The Sawaai/1.25 Rule)</h3>
-                    <p class="text-stone-500 mb-4 text-sm">To keep the recipe auspicious, ingredients are measured in 1.25 ratios (e.g., 1.25 cups or multiples):</p>
-                    <ul class="space-y-2 list-disc list-inside text-stone-600">
-                        <li><strong>1.25 Cups</strong> Semolina (Suji/Rava)</li>
-                        <li><strong>1.25 Cups</strong> pure Desi Cow Ghee</li>
-                        <li><strong>1.25 Cups</strong> Sugar</li>
-                        <li><strong>1.25 Cups</strong> Whole Milk (warm)</li>
-                        <li><strong>1.25</strong> Ripe Bananas (mashed)</li>
-                        <li>Generous pinch of Saffron and Cardamom powder</li>
-                        <li>Handful of Cashews, Almonds, Raisins</li>
-                        <li>Fresh **Tulsi Leaves** (added at the end)</li>
-                    </ul>
+                <!-- Step 2 -->
+                <div class="bg-amber-50/50 p-5 rounded-xl border border-amber-100 text-center">
+                    <span class="text-xs bg-orange-600 text-white font-bold px-2.5 py-1 rounded-full">02</span>
+                    <h3 class="text-lg font-bold text-stone-800 mt-3 mb-2">Sankalpa</h3>
+                    <p class="text-xs text-stone-500">Hold water and flowers in your right hand. State your name, current location, and your prayer.</p>
                 </div>
-                <div class="flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-amber-700 mb-4">Quick Preparation Steps</h3>
-                        <ol class="space-y-3 list-decimal list-inside text-stone-600 text-sm">
-                            <li>Heat ghee in a heavy-bottomed pan and roast the cashews and almonds. Set aside.</li>
-                            <li>In the same ghee, add Suji and roast on low flame until aromatic and golden brown.</li>
-                            <li>Slowly pour warm milk into the roasted Suji, stirring continuously to avoid lumps.</li>
-                            <li>Cover and cook on low heat for 2-3 minutes until milk is fully absorbed.</li>
-                            <li>Mix in the sugar, mashed banana, cardamom powder, and roasted nuts. Cover for 2 more minutes until sugar melts completely.</li>
-                            <li><strong>Important:</strong> Garnish with fresh **Tulsi leaves** before offering to the deity.</li>
-                        </ol>
-                    </div>
+                <!-- Step 3 -->
+                <div class="bg-amber-50/50 p-5 rounded-xl border border-amber-100 text-center">
+                    <span class="text-xs bg-orange-600 text-white font-bold px-2.5 py-1 rounded-full">03</span>
+                    <h3 class="text-lg font-bold text-stone-800 mt-3 mb-2">Ganesh Puja</h3>
+                    <p class="text-xs text-stone-500">Worship Lord Ganesha first to eliminate any obstacles. Offer sweet modaks and flowers.</p>
                 </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-stone-900 text-stone-400 py-12 border-t-2 border-orange-600">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="brand-font text-white text-lg mb-4">Satyanarayan.com</p>
-            <p class="text-sm mb-6">&copy; 2026 Satyanarayan.com. Dedicated to providing authentic scriptural resources.</p>
-            <div class="flex justify-center space-x-6 text-xs uppercase tracking-wider">
-                <a href="#about" class="hover:text-amber-500">About</a>
-                <a href="#samagri" class="hover:text-amber-500">Samagri</a>
-                <a href="#vidhi" class="hover:text-amber-500">Vidhi</a>
-                <a href="#katha" class="hover:text-amber-500">Katha</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Interactive JavaScript -->
-    <script>
-        const chapters = {
-            1: {
-                title: "Chapter 1: The Revelation",
-                content: `<p class="mb-4">Suta Maha Muni addresses the assembled sages in Naimisharanya forest. He narrates how Sage Narada, while traveling through the three worlds, felt deep compassion for suffering humanity on Earth. Narada ascended to Vaikuntha and approached Lord Narayana Himself.</p>
-                          <p class="mb-4">Narada asked the Lord for a simple way for mankind to be relieved of their worldly miseries. Lord Vishnu revealed the **Satyanarayan Vrat**, declaring that anyone who performs this puja with sincere faith, invites friends and family, listens to the stories (Katha), and distributes Prasad will be liberated from all suffering and attain peace on Earth and salvation hereafter.</p>`
-            },
-            2: {
-                title: "Chapter 2: The Poor Brahmin & The Woodcutter",
-                content: `<p class="mb-4">In the beautiful city of Kasi, there lived an extremely poor and pious Brahmin. Distressed by his poverty, Lord Satyanarayan appeared to him disguised as an old Brahmin and instructed him to perform the Satyanarayan Vrat.</p>
-                          <p class="mb-4">The Brahmin performed the Vrat the following day. Immediately, his hardships vanished and he became wealthy. Observing this, a poor woodcutter who visited the Brahmin's house inquired about the puja. Inspired, the woodcutter performed the puja himself and received immense wealth and happiness, spending the rest of his life in devotion.</p>`
-            },
-            3: {
-                title: "Chapter 3: The Merchant and His Pride",
-                content: `<p class="mb-4">A wealthy merchant named Sadhu, along with his son-in-law, travels to a city for business. He pledges to perform the Satyanarayan Puja only if he is blessed with a child. However, after the birth of his daughter, Lilavati, he delays performing the puja out of pride and business distractions.</p>
-                          <p class="mb-4">While trading in a foreign kingdom, King Chandraketu's palace is robbed, and the thieves drop the loot near the merchant's camp. The merchants are falsely accused, chained, and thrown into prison, and their wealth is confiscated. This was the result of neglecting the vow to Lord Satyanarayan.</p>`
-            },
-            4: {
-                title: "Chapter 4: The Liberation from Prison",
-                content: `<p class="mb-4">Back home, Lilavati and her mother are struck by poverty. Realizing their mistake, Lilavati witnesses a neighbor performing the Satyanarayan Puja and resolves to perform it herself to seek forgiveness. Lord Satyanarayan is appeased.</p>
-                          <p class="mb-4">The same night, the Lord appears in King Chandraketu’s dream, commanding him to release the innocent merchants. The King frees them, returns their wealth, and sends them home safely. On their journey back, the merchant is tested once more by the Lord in the guise of a hermit and, upon showing humility, is blessed with safety and fortune.</p>`
-            },
-            5: {
-                title: "Chapter 5: King Tungadhwaja and the Prasad",
-                content: `<p class="mb-4">This chapter emphasizes the extreme importance of respecting the **Prasad**. King Tungadhwaja, while hunting, saw some cowherds performing the Satyanarayan Puja in a forest. Due to his royal pride, he did not join them, and when offered the Prasad, he refused to consume it and left.</p>
-                          <p class="mb-4">Upon returning to his palace, he found his kingdom in ruins, his wealth gone, and his 100 sons dead. Realizing his arrogance, he rushed back to the forest, humbly accepted the Prasad from the cowherds, and prayed for forgiveness. His kingdom and family were instantly restored. He ruled with righteousness and ultimately attained Vaikuntha.</p>`
-            }
-        };
-
-        function switchChapter(num) {
-            // Update Tab styles
-            document.querySelectorAll('.chapter-tab').forEach(tab => {
-                tab.className = "chapter-tab bg-amber-100 text-amber-800 hover:bg-amber-200 font-semibold px-4 py-2 rounded-lg transition";
-            });
-            const activeTab = document.getElementById(`tab-${num}`);
-            activeTab.className = "chapter-tab bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg transition shadow-sm";
-
-            // Update Content
-            const container = document.getElementById('chapter-content');
-            container.innerHTML = `
-                <h3 class="text-xl font-bold text-orange-600 mb-4">${chapters[num].title}</h3>
-                ${chapters[num].content}
-            `;
-        }
-    </script>
-</body>
-</html>
+                <!-- Step 4 -->
+                <div cla
