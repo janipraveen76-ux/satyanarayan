@@ -487,7 +487,7 @@
             }
         }
 
-        // Calendar switcher (2026 / 2027) - Re-engineered using native display properties
+        // Calendar switcher (2026 / 2027) - Dynamic Display
         function switchYear(year) {
             var table2026 = document.getElementById('table-2026');
             var table2027 = document.getElementById('table-2027');
@@ -497,44 +497,20 @@
             if (!table2026 || !table2027 || !btn2026 || !btn2027) return;
 
             if (year === 2026) {
-                // Show 2026 Table, Hide 2027 Table
                 table2026.style.display = 'table';
                 table2027.style.display = 'none';
-                
-                // Toggle Button Highlight Active Styles
                 btn2026.className = "px-6 py-2 rounded-full font-bold transition shadow bg-orange-600 text-white";
                 btn2027.className = "px-6 py-2 rounded-full font-bold transition shadow bg-amber-100 text-amber-800 hover:bg-amber-200";
             } else {
-                // Show 2027 Table, Hide 2026 Table
                 table2026.style.display = 'none';
                 table2027.style.display = 'table';
-                
-                // Toggle Button Highlight Active Styles
                 btn2027.className = "px-6 py-2 rounded-full font-bold transition shadow bg-orange-600 text-white";
                 btn2026.className = "px-6 py-2 rounded-full font-bold transition shadow bg-amber-100 text-amber-800 hover:bg-amber-200";
             }
         }
 
-        // Pandit Registry submission
-        function submitPanditForm(e) {
-            e.preventDefault();
-            const toast = document.getElementById('toast-success');
-            const form = document.getElementById('pandit-form');
-            if (toast) toast.classList.remove('hidden');
-            if (form) form.reset();
-            
-            const directory = document.getElementById('directory');
-            if (directory) {
-                window.scrollTo({
-                    top: directory.offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // HTML elements tab toggling for Katha
+        // HTML elements tab toggling for Katha chapters
         function switchChapter(num) {
-            // Update Tab styles
             document.querySelectorAll('.chapter-tab').forEach(tab => {
                 tab.className = "chapter-tab bg-amber-100 text-amber-800 hover:bg-amber-200 font-semibold px-4 py-2 rounded-lg transition text-sm";
             });
@@ -544,7 +520,6 @@
                 activeTab.className = "chapter-tab bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg transition shadow-sm text-sm";
             }
 
-            // Toggle HTML elements directly
             document.querySelectorAll('.katha-content').forEach(content => {
                 content.classList.add('hidden');
             });
@@ -554,7 +529,127 @@
                 activeContent.classList.remove('hidden');
             }
         }
+
+        // ========================================================
+        // 🔍 PANDIT DIRECTORY DATABASE & SEARCH SYSTEM
+        // ========================================================
+        const panditDatabase = [
+            { name: "Pandit Satyanarayan Shastri", location: "New York, US", languages: "Hindi, Sanskrit, English", contact: "shastri@satyanarayan.com", specialties: "Griha Pravesh, Satyanarayan Puja, Weddings" },
+            { name: "Pandit Venkata Ramana", location: "London, UK", languages: "Telugu, Tamil, Hindi, English", contact: "ramana@satyanarayan.com", specialties: "Satyanarayan Puja, Upanayanam, Ganesha Puja" },
+            { name: "Pandit Dinesh Sharma", location: "Toronto, Canada", languages: "Hindi, Punjabi, English", contact: "sharma@satyanarayan.com", specialties: "Satyanarayan Puja, Vastu Havan, Bhoomi Puja" }
+        ];
+
+        // Renders the Directory cards on page load
+        function renderPandits(list) {
+            const resultsContainer = document.getElementById('pandit-results');
+            if (!resultsContainer) return;
+            resultsContainer.innerHTML = '';
+
+            if (list.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="col-span-full text-center py-8 text-stone-500">
+                        No pandits found matching your search. Become the first registered priest in this area!
+                    </div>`;
+                return;
+            }
+
+            list.forEach(p => {
+                resultsContainer.innerHTML += `
+                    <div class="bg-amber-50/40 border border-amber-200 p-6 rounded-xl hover:shadow-md transition duration-300">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="font-bold text-lg text-orange-600 font-sans">${p.name}</h3>
+                                <p class="text-stone-500 text-xs mt-0.5">📍 ${p.location}</p>
+                            </div>
+                            <span class="text-xs bg-orange-100 text-orange-700 font-bold px-2 py-1 rounded">Verified</span>
+                        </div>
+                        <div class="mt-4 space-y-2 text-xs text-stone-600">
+                            <p><strong>Languages:</strong> ${p.languages}</p>
+                            <p><strong>Specialties:</strong> ${p.specialties}</p>
+                        </div>
+                        <div class="mt-6">
+                            <a href="mailto:${p.contact}?subject=Booking Inquiry via Satyanarayan.com" class="block text-center bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs py-2 rounded-lg transition">
+                                Contact Priest
+                            </a>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        // Live filtration as user types or selects dropdown
+        function filterPandits() {
+            const searchText = document.getElementById('search-input').value.toLowerCase();
+            const selectedLanguage = document.getElementById('language-select').value.toLowerCase();
+
+            const filteredList = panditDatabase.filter(p => {
+                const matchesSearch = p.name.toLowerCase().includes(searchText) || p.location.toLowerCase().includes(searchText);
+                const matchesLanguage = selectedLanguage === 'all' || p.languages.toLowerCase().includes(selectedLanguage);
+                return matchesSearch && matchesLanguage;
+            });
+
+            renderPandits(filteredList);
+        }
+
+        // Load default lists instantly
+        window.addEventListener('DOMContentLoaded', () => {
+            renderPandits(panditDatabase);
+        });
+
+        // ========================================================
+        // 📥 SECURE SUBMISSION TO GOOGLE SHEETS ON MY DRIVE
+        // ========================================================
+        function submitPanditToGoogle(e) {
+            e.preventDefault();
+            
+            const form = document.getElementById('pandit-form');
+            const toastSuccess = document.getElementById('toast-success');
+            const toastLoading = document.getElementById('toast-loading');
+            
+            // Show loading status, hide previous success toast
+            if (toastLoading) toastLoading.classList.remove('hidden');
+            if (toastSuccess) toastSuccess.classList.add('hidden');
+
+            const webAppUrl = "YOUR_GOOGLE_WEB_APP_URL"; // REPLACE THIS with your deployment URL
+
+            if (webAppUrl === "YOUR_GOOGLE_WEB_APP_URL") {
+                alert("Please add your Google Web App URL inside index.html script first!");
+                if (toastLoading) toastLoading.classList.add('hidden');
+                return;
+            }
+
+            // Extract the form variables directly to serialize safely
+            const formData = new FormData(form);
+            const queryParams = new URLSearchParams(formData).toString();
+
+            // Submit securely using cross-domain fetch POST
+            fetch(`${webAppUrl}?${queryParams}`, {
+                method: "POST"
+            })
+            .then(response => {
+                if (toastLoading) toastLoading.classList.add('hidden');
+                if (toastSuccess) toastSuccess.classList.remove('hidden');
+                
+                // Add the newly registered priest to the local search list instantly so they see themselves live!
+                const newPriest = {
+                    name: form.elements['name'].value,
+                    location: form.elements['location'].value,
+                    languages: form.elements['languages'].value,
+                    contact: form.elements['email'].value,
+                    specialties: form.elements['bio'].value.substring(0, 80) + '...'
+                };
+                
+                panditDatabase.unshift(newPriest); // Insert at the beginning of the list
+                filterPandits(); // Instantly update view
+                form.reset(); // Reset form fields
+            })
+            .catch(error => {
+                if (toastLoading) toastLoading.classList.add('hidden');
+                alert("An error occurred. Please try again. Detailed log: " + error);
+                console.error("DNS/CORS Error: ", error);
+            });
+        }
     </script>
+
     
 </body>
 </html>
